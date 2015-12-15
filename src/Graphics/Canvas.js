@@ -32,6 +32,17 @@ exports.getCanvasElementByIdImpl = function(id, Just, Nothing) {
     };
 };
 
+exports.setCanvasElement = function(el, Just, Nothing) {
+    return function() {
+        if (el && el instanceof HTMLCanvasElement) {
+            return Just(el);
+        } else {
+            return Nothing;
+        }
+    };
+};
+
+
 exports.getContext2D = function(c) {
     return function() {
         return c.getContext('2d');
@@ -572,4 +583,3 @@ exports.bezierCurveTo = function(bCurve) {
         };
     };
 };
-
