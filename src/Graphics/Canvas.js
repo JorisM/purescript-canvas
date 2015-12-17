@@ -32,7 +32,7 @@ exports.getCanvasElementByIdImpl = function(id, Just, Nothing) {
     };
 };
 
-exports.setCanvasElement = function(el, Just, Nothing) {
+exports.setCanvasElementImpl = function(el, Just, Nothing) {
     return function() {
         if (el && el instanceof HTMLCanvasElement) {
             return Just(el);

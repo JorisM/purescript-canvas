@@ -79,6 +79,14 @@ getCanvasElementById :: forall eff. String -> Eff (canvas :: Canvas | eff) (Mayb
 
 Get a canvas element by ID, or `Nothing` if the element does not exist.
 
+#### `setCanvasElement`
+
+``` purescript
+setCanvasElement :: forall eff. HTMLELement -> Eff (canvas :: Canvas | eff) (Maybe CanvasElement)
+```
+
+If the HTMLElement is of type CanvasElement, return CanvasElement otherwise `Nothing`.
+
 #### `getContext2D`
 
 ``` purescript
@@ -523,7 +531,7 @@ type TextMetrics = { width :: Number }
 
 Text metrics:
 
-- The text width in pixels. 
+- The text width in pixels.
 
 #### `font`
 
@@ -769,5 +777,3 @@ bezierCurveTo :: forall eff. BezierCurve -> Context2D -> Eff (canvas :: Canvas |
 ```
 
 Draw a cubic Bézier curve.
-
-

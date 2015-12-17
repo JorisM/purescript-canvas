@@ -25,6 +25,7 @@ module Graphics.Canvas
   , BezierCurve()
 
   , getCanvasElementById
+  , setCanvasElement
   , getContext2D
   , getCanvasWidth
   , setCanvasWidth
@@ -144,13 +145,19 @@ foreign import getCanvasElementByIdImpl ::
                     r
                     (Eff (canvas :: Canvas | eff) r)
 
+foreign import setCanvasElementImpl ::
+  forall r eff. Fn3 HTMLElement
+                    (CanvasElement -> r)
+                    r
+                    (Eff (canvas :: Canvas | eff) r)
+
 -- | Get a canvas element by ID, or `Nothing` if the element does not exist.
 getCanvasElementById :: forall eff. String -> Eff (canvas :: Canvas | eff) (Maybe CanvasElement)
 getCanvasElementById elId = runFn3 getCanvasElementByIdImpl elId Just Nothing
 
 -- | Set a canvas element
 setCanvasElement :: forall eff. HTMLElement -> Eff (canvas :: Canvas | eff) (Maybe CanvasElement)
-setCanvasElement = runFn3 getCanvasElementByIdImpl el Just Nothing
+setCanvasElement el = runFn3 setCanvasElementImpl el Just Nothing
 
 -- | Get the 2D graphics context for a canvas element.
 foreign import getContext2D :: forall eff. CanvasElement -> Eff (canvas :: Canvas | eff) Context2D
